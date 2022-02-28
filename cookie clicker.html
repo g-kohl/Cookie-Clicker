@@ -1,0 +1,246 @@
+<html>
+    <head>
+        <title id="topo">Cookie Clicker</title>
+
+        <meta charset="UTF-8"></meta>
+
+        <style>
+
+            body
+            {
+                background-color: rgb(20,20,20);
+                margin: 0px;
+            }
+            .cookie
+            {
+                width: 99px; height: 99px;
+                margin-top: 100px; margin-bottom: 50px;
+                background-image: url("imagens/cookie.jpg");
+            }
+            .forno
+            {
+                width: 40px; height: 40px;
+            }
+            .vovo
+            {
+                width: 40px; height: 40px;
+            }
+            .padaria
+            {
+                width: 40px; height: 40px;
+            }
+            .receita
+            {
+                width: 40px; height: 40px;
+            }
+            .texto
+            {
+                color: white;
+            }
+            .titulo
+            {
+                color: black;
+                font-size: 40px;
+            }
+            .div
+            {
+                height: 50px;
+                margin-top: 10px;
+                background-color: darkgray;
+            }
+            .div2
+            {
+                margin-left: 10px; margin-right: 10px;
+            }
+            .div3
+            {
+                margin-left: 10px; margin-top: 20px;
+            }
+            .div4
+            {
+                width: 50%;
+                float: left;
+            }
+        </style>
+    </head>
+    <body>
+        <center>
+            <div class="div">
+                <text id="titulo" class="titulo"></text>
+            </div>
+        </center>
+
+        <div class="div3">
+            <text id=total class="texto"></text>
+            <br/>
+            <text id=inforeceita class="texto"></text>
+        </div>
+
+        <center>
+            <div>
+                <button id="cookie" class="cookie" onclick="bolachar()"></button>
+                <br/>
+                <text id="ncookies" class="texto"></text> 
+            </div>
+
+        </center>
+        <div class="div4">
+            <div class="div2">
+            <button id="forno" class="forno" onclick="fornar()"></button>
+            <br/>
+            <text id="preçoforno" class="texto"></text>
+            <br/>
+            <text id="nforno" class="texto"></text>  
+            </div>
+            <br/>
+            <br/>
+            <div class="div2">
+                <button id="vovo" class="vovo" onclick="vovozar()"></button>
+                <br/>
+                <text id="preçovovo" class="texto"></text>
+                <br/>
+                <text id="nvovo" class="texto"></text>
+            </div>
+            <br/>
+            <br/>
+            <div class="div2">
+                <button id="padaria" class="padaria" onclick="padarizar()"></button>
+                <br/>
+                <text id="preçopadaria" class="texto"></text>
+                <br/>
+                <text id="npadaria" class="texto"></text>
+            </div>
+            <br/>
+            <br/>
+            <div class="div2">
+                <button id="receita" class="receita" onclick="receitar()"></button>
+                <br/>
+                <text id="preçoreceita" class="texto"></text>
+                <br/>
+                <text id="nreceita" class="texto"></text>
+            </div>
+        </div>
+
+        <script>
+            document.getElementById("preçoforno").innerHTML="Preço do forno: 5 cookies"
+            document.getElementById("preçovovo").innerHTML="Preço da vovó: 100 cookies"
+            document.getElementById("preçopadaria").innerHTML="Preço da padaria: 1000 cookies"
+            document.getElementById("preçoreceita").innerHTML="Preço para incrementar receita: 10.000 cookies"
+            document.getElementById("titulo").innerHTML="Cookie Clicker do kohl"
+            document.getElementById("inforeceita").innerHTML="Ao incrementar a receita você duplica seus ganhos com atributos automáticos (forno, vovó,...)"
+
+            var bolacha = 0
+            var forno = 0
+            var preçoforno = 5
+            var vovo = 0
+            var preçovovo = 100
+            var padaria = 0
+            var preçopadaria = 1000
+            var receita = 0
+            var preçoreceita = 10000
+            var timer = setInterval(timer,10000)
+
+            function bolachar()
+            {
+                bolacha = bolacha + 1;
+                document.getElementById("ncookies").innerHTML = bolacha;
+                document.getElementById("topo").innerHTML= "Total de Cookies: " + bolacha;
+            }
+            function fornar()
+            {
+                if(bolacha >= preçoforno)
+                {
+                    forno = forno + 1;
+                    bolacha = bolacha - preçoforno;
+                    preçoforno = preçoforno + (2 * forno);
+                    document.getElementById("ncookies").innerHTML = bolacha;
+                    document.getElementById("preçoforno").innerHTML="Preço do forno: " + preçoforno;
+                    document.getElementById("nforno").innerHTML="Número de fornos: " + forno;
+                    document.getElementById("topo").innerHTML= "Total de Cookies: " + bolacha;
+                }
+            }
+            function vovozar()
+            {
+                if(bolacha >= preçovovo)
+                {
+                    vovo = vovo + 1;
+                    bolacha = bolacha - preçovovo;
+                    preçovovo = preçovovo + (2 * (10 * vovo));
+                    document.getElementById("ncookies").innerHTML = bolacha;
+                    document.getElementById("preçovovo").innerHTML="Preço da vovó: " + preçovovo;
+                    document.getElementById("nvovo").innerHTML="Número de Vovós: " + vovo;
+                    document.getElementById("topo").innerHTML= "Total de Cookies: " + bolacha;
+                }
+            }
+            function padarizar()
+            {
+                if(bolacha >= preçopadaria)
+                {
+                    padaria = padaria + 1;
+                    bolacha = bolacha - preçopadaria;
+                    preçopadaria = preçopadaria + (2 * (100 * padaria));
+                    document.getElementById("ncookies").innerHTML = bolacha;
+                    document.getElementById("preçopadaria").innerHTML="Preço da padaria: " + preçopadaria;
+                    document.getElementById("npadaria").innerHTML="Número de padarias: " + padaria;
+                    document.getElementById("topo").innerHTML= "Total de Cookies: " + bolacha;
+                }
+            }
+            function receitar()
+            {
+                if(bolacha >= preçoreceita)
+                {
+                    receita = receita + 1;
+                    bolacha = bolacha - preçoreceita;
+                    preçoreceita = (10 * preçoreceita);
+                    document.getElementById("ncookies").innerHTML = bolacha;
+                    document.getElementById("preçoreceita").innerHTML="Preço para incrementar receita: " + preçoreceita;
+                    document.getElementById("nreceita").innerHTML="Quantidade de incrementos: " + receita;
+                    document.getElementById("topo").innerHTML= "Total de Cookies: " + bolacha;
+                }
+            }
+            function timer()
+            {
+                if(receita > 0)
+                {
+                    if(forno > 0)
+                    {
+                        bolacha = bolacha + (forno * (2 * receita))
+                        document.getElementById("ncookies").innerHTML = bolacha;
+                    }
+                    if(vovo > 0)
+                    {
+                        bolacha = bolacha + ((vovo * 10) * (2 * receita))
+                        document.getElementById("ncookies").innerHTML = bolacha;
+                    }
+                    if(padaria > 0)
+                    {
+                        bolacha = bolacha + ((padaria * 100) * (2 * receita))
+                        document.getElementById("ncookies").innerHTML = bolacha;
+                    }
+                    document.getElementById("total").innerHTML= "Cookies por minuto: " + (((forno + (vovo * 10) + (padaria * 100)) * (receita * 2)) * 6);
+                    document.getElementById("topo").innerHTML= "Total de Cookies: " + bolacha;
+                }
+                else
+                {
+                    if(forno > 0)
+                    {
+                        bolacha = bolacha + forno;
+                        document.getElementById("ncookies").innerHTML = bolacha;
+                    }
+                    if(vovo > 0)
+                    {
+                        bolacha = bolacha + (vovo * 10)
+                        document.getElementById("ncookies").innerHTML = bolacha;
+                    }
+                    if(padaria > 0)
+                    {
+                        bolacha = bolacha + (padaria * 100)
+                        document.getElementById("ncookies").innerHTML = bolacha;
+                    }
+                    document.getElementById("total").innerHTML= "Cookies por minuto: " + (((forno + (vovo * 10) + (padaria * 100)) * 6));
+                    document.getElementById("topo").innerHTML= "Total de Cookies: " + bolacha;
+                }
+            }
+        </script>
+    </body>
+</html>
